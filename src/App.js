@@ -10,9 +10,11 @@ function App() {
     const isRolled = useSelector((state) => state.isRolled);
     const URL = 'https://randomuser.me/api/?results=1000';
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(loadData(URL));
-    }, [URL, dispatch]);
+    }, [URL]);
+
     return (
         <div>
             {!isLoad ? <span> Loading... </span> :

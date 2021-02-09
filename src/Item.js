@@ -4,6 +4,7 @@ export const Item = ({item}) => {
     Item.propTypes = {
         item: PropTypes.object,
     };
+
     return (
         <>
             <tr draggable={true}>{item.name.first}
