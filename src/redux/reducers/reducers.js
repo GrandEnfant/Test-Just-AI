@@ -6,7 +6,8 @@ const dataInitial = {data: ''};
 const rolledInitial = {firstGroup: false,
                         secondGroup: false,
                         thirdGroup: false
-}
+};
+ const initialFavorites = [];
 
 
 export const AddDataReducer = (state = dataInitial, action) => {
@@ -55,3 +56,17 @@ export const ChangeRolledUpReducer = (state = rolledInitial, action) => {
         default: return state;
     }
 };
+export const addFavoritesReducer = (state = initialFavorites, action) => {
+    switch (action.type) {
+        case Types.ADD_FAVORITES: {
+            let copiedState = state;
+            let mySet = new Set(copiedState);
+            mySet.add(action.card);
+            return Array.from(mySet)
+        }
+        default: return state;
+    }
+};
+
+
+

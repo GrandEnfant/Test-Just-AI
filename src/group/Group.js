@@ -1,11 +1,12 @@
-import {rolledUpState} from "./redux/actions";
-import {Item} from "./Item";
+import {rolledUpState} from "../redux/actions";
+import {Card} from "../card/Card";
 import {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
+import './style.css'
 
 export const Group = ({data, dispatch, isRolled, substring}) => {
     Group.propTypes = {
-        data: PropTypes.object,
+        data: PropTypes.array,
     };
 
     const first_group = data.filter(item => item.registered.age <= 10);
@@ -32,16 +33,16 @@ export const Group = ({data, dispatch, isRolled, substring}) => {
            <div>
                <div onClick={() => dispatch(rolledUpState(isRolled.firstGroup, 'firstGroup'))}>1-10
                    {!isRolled.firstGroup ? null :
-                       <> {firstFilteredGroup.map((item, id) => <Item key={id} item={item}/>)}</>
+                       <> {firstFilteredGroup.map((item, id) => <Card dispatch={dispatch} key={id} item={item}/>)}</>
                    }
                </div>
                <div onClick={() => dispatch(rolledUpState(isRolled.secondGroup, 'secondGroup'))}>11-20
-                   {!isRolled.secondGroup ? null : <> {secondFilteredGroup.map((item, id) => <Item key={id} item={item}/>)}
+                   {!isRolled.secondGroup ? null : <> {secondFilteredGroup.map((item, id) => <Card dispatch={dispatch} key={id} item={item}/>)}
                    </>}
                </div>
                <div onClick={() => dispatch(rolledUpState(isRolled.thirdGroup, 'thirdGroup'))}>21-30
                    {!isRolled.thirdGroup ? null :
-                       <>{thirdFilteredGroup.map((item, id) => <Item key={id} item={item}/>)}
+                       <>{thirdFilteredGroup.map((item, id) => <Card dispatch={dispatch} key={id} item={item}/>)}
                        </>}
 
                </div>

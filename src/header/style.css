@@ -1,0 +1,11 @@
+.table {
+    max-width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.col1
+    {
+    border: 1px solid gray;
+    /*border-radius: 20%;*/
+}

@@ -16,6 +16,12 @@ export function rolledUpState (isRolled, number){
                     number: number}
     }
 }
+export function addFavorites (card){
+    return {
+        type: Types.ADD_FAVORITES,
+        card: card
+    }
+}
 
 
 
