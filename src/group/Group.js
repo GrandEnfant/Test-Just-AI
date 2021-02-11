@@ -29,24 +29,23 @@ export const Group = ({data, dispatch, isRolled, substring}) => {
         setNewFilteredValue(substring)
     }, [substring]);
     return (
-       <div>
-           <div>
-               <div onClick={() => dispatch(rolledUpState(isRolled.firstGroup, 'firstGroup'))}>1-10
+
+           <div className={'group'}>
+               <div className={'group-title'} onClick={() => dispatch(rolledUpState(isRolled.firstGroup, 'firstGroup'))}> <span>1-10</span>
                    {!isRolled.firstGroup ? null :
-                       <> {firstFilteredGroup.map((item, id) => <Card dispatch={dispatch} key={id} item={item}/>)}</>
+                       <> {firstFilteredGroup.map((item, id) => <Card substring={substring} dispatch={dispatch} key={id} item={item}/>)}</>
                    }
                </div>
-               <div onClick={() => dispatch(rolledUpState(isRolled.secondGroup, 'secondGroup'))}>11-20
+               <div className={'group-title'} onClick={() => dispatch(rolledUpState(isRolled.secondGroup, 'secondGroup'))}><span>11-20</span>
                    {!isRolled.secondGroup ? null : <> {secondFilteredGroup.map((item, id) => <Card dispatch={dispatch} key={id} item={item}/>)}
                    </>}
                </div>
-               <div onClick={() => dispatch(rolledUpState(isRolled.thirdGroup, 'thirdGroup'))}>21-30
+               <div className={'group-title'} onClick={() => dispatch(rolledUpState(isRolled.thirdGroup, 'thirdGroup'))}><span>21-30</span>
                    {!isRolled.thirdGroup ? null :
                        <>{thirdFilteredGroup.map((item, id) => <Card dispatch={dispatch} key={id} item={item}/>)}
                        </>}
 
                </div>
            </div>
-       </div>
     )
 };

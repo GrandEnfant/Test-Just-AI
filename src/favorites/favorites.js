@@ -8,7 +8,7 @@ export const FavoritesColumn = ({dispatch}) => {
     const favorites = useSelector((state) => state.favorites);
     const handlerDragOver = (evt) => {
         evt.preventDefault();
-        evt.target.style.background = 'yellow'
+        evt.target.style.background = '#ffffdc'
     };
     const handlerDragLeave = (evt) => {
         evt.preventDefault();
@@ -21,11 +21,11 @@ export const FavoritesColumn = ({dispatch}) => {
     };
 
     return (
-        <div className={"col2"}
+        <div className={"favorites"}
              onDragOver={(evt) => handlerDragOver(evt)}
              onDragLeave = {(evt) => handlerDragLeave(evt)}
              onDrop={(evt) => handlerDrop(evt)}
-        > Избранные
+        > <span>Избранные</span>
             {!favorites? null :
             <div className={'favorites'}>
                 {favorites.map(item => <FavoritesCard dispatch={dispatch} item={item}/>)}

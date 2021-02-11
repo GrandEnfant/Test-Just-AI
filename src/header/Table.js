@@ -1,13 +1,13 @@
 import {FavoritesColumn} from '../favorites/favorites'
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import PropTypes from 'prop-types';
 import {Group} from "../group/Group";
 import './style.css'
 
 
-export const Header = ({data, isRolled, dispatch}) => {
+export const Table = ({data, isRolled, dispatch}) => {
 
-    Header.propTypes = {
+    Table.propTypes = {
         data: PropTypes.object,
         isRolled: PropTypes.object,
         dispatch: PropTypes.func,
@@ -19,7 +19,8 @@ export const Header = ({data, isRolled, dispatch}) => {
 
     return (
         <div className={"table"}>
-            <div className={"col1"}><input type={'text'} value={substring} onChange={startSearchSubstring}/>
+            <div className={"table-col1"}>
+                <input placeholder={"Поиск"} type={'text'} value={substring} onChange={startSearchSubstring}/>
                 <Group data={data} dispatch={dispatch} isRolled={isRolled} substring={substring}/>
             </div>
             <FavoritesColumn dispatch={dispatch}/>

@@ -1,0 +1,13 @@
+.group {
+
+}
+
+.group-title {
+    cursor: pointer;
+    text-align: center;
+    padding: 10px;
+}
+
+span {
+    font-weight: bold;
+}

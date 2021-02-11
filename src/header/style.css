@@ -1,11 +1,15 @@
 .table {
-    max-width: 50%;
+    min-width: 1200px;
     display: flex;
     justify-content: space-between;
 }
 
-.col1
-    {
+.table-col1 {
     border: 1px solid gray;
+    width: 50%;
     /*border-radius: 20%;*/
+}
+input[type=text] {
+    border-radius: 10px;
+    padding: 10px;
 }
