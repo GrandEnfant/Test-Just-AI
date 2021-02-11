@@ -1,9 +1,10 @@
 import './style.css'
 import {Card} from "../card/Card";
 import {useEffect, useState} from "react";
+import {FavoritesCard} from "../favoritesCard/favoriteCard";
 import {useSelector, useDispatch} from 'react-redux';
 
-export const FavoritesColumn = () => {
+export const FavoritesColumn = ({dispatch}) => {
     const favorites = useSelector((state) => state.favorites);
     const handlerDragOver = (evt) => {
         evt.preventDefault();
@@ -27,7 +28,7 @@ export const FavoritesColumn = () => {
         > Избранные
             {!favorites? null :
             <div className={'favorites'}>
-                {favorites.map(item => <Card item={item}/>)}
+                {favorites.map(item => <FavoritesCard dispatch={dispatch} item={item}/>)}
 
             </div>}
         </div>

@@ -7,25 +7,15 @@ export const Card = ({item, dispatch}) => {
     Card.propTypes = {
         item: PropTypes.object,
     };
-    const favorites = useSelector((state) => state.favorites);
-
-    const handlerDragStart = (evt, item) => {
-    };
 
     const handlerDragEnd = (evt, card) => {
         evt.preventDefault();
-        console.log(card);
         dispatch(addFavorites(card));
-        console.log(favorites);
-        console.log('fav');
-        console.log('drop')
-
     };
 
     return (
             <div className={'userCard'}
                 draggable={true}
-                onDragStart = {(evt) => handlerDragStart(evt, item)}
                 onDragEnd = {(evt) => handlerDragEnd(evt, item)}
             >
                 <div className={"col1"}><div className={'userPic'}><img src={item.picture.thumbnail} /></div></div>

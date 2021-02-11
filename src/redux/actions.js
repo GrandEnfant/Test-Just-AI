@@ -40,6 +40,13 @@ export function addError(data) {
         data: data,
     };
 }
+export function deleteCard(card) {
+    console.log(card);
+    return {
+        type: Types.DELETE_CARD,
+        card: card,
+    };
+}
 
 
 export const loadData = (url) => {

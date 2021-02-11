@@ -64,6 +64,13 @@ export const addFavoritesReducer = (state = initialFavorites, action) => {
             mySet.add(action.card);
             return Array.from(mySet)
         }
+        case Types.DELETE_CARD: {
+            let copiedState = state;
+            let mySet = new Set(copiedState);
+                mySet.delete(action.card);
+            return Array.from(mySet)
+
+        }
         default: return state;
     }
 };

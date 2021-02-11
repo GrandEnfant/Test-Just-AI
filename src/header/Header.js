@@ -22,7 +22,7 @@ export const Header = ({data, isRolled, dispatch}) => {
             <div className={"col1"}><input type={'text'} value={substring} onChange={startSearchSubstring}/>
                 <Group data={data} dispatch={dispatch} isRolled={isRolled} substring={substring}/>
             </div>
-            <FavoritesColumn />
+            <FavoritesColumn dispatch={dispatch}/>
         </div>
     );
 };

@@ -7,5 +7,5 @@ export const rootReducer = combineReducers({
     error: AddErrorReducer,
     isLoad: ChangeIsLoadedReducer,
     isRolled: ChangeRolledUpReducer,
-    favorites: addFavoritesReducer
+    favorites: addFavoritesReducer,
 });
