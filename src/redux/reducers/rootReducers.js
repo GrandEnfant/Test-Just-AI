@@ -1,5 +1,11 @@
 import {combineReducers} from 'redux';
-import {AddDataReducer, AddErrorReducer, ChangeIsLoadedReducer, ChangeRolledUpReducer, addFavoritesReducer} from './reducers';
+import {
+    AddDataReducer,
+    AddErrorReducer,
+    ChangeIsLoadedReducer,
+    ChangeRolledUpReducer,
+    addFavoritesReducer
+} from './reducers';
 
 
 export const rootReducer = combineReducers({

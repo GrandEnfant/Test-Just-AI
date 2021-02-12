@@ -1,32 +1,33 @@
-import axios from "axios/index";
-import {Types} from './types'
+import axios from 'axios/index';
+import {Types} from './types';
 
 
 export function changeLoadState(isLoad) {
     return {
         type: Types.CHANGE_ISLOAD,
         isLoad: isLoad
-    }
+    };
 }
 
-export function rolledUpState (isRolled, number){
+export function rolledUpState(isRolled, number) {
     return {
         type: Types.ROLL_UP,
-        payload: {isRolled: !isRolled,
-                    number: number}
-    }
+        payload: {
+            isRolled: !isRolled,
+            number: number
+        }
+    };
 }
-export function addFavorites (card){
+
+export function addFavorites(card) {
     return {
         type: Types.ADD_FAVORITES,
         card: card
-    }
+    };
 }
 
 
-
 export function addData(data) {
-console.log(data);
     return {
         type: Types.ADD_DATA,
         data: data,
@@ -34,14 +35,13 @@ console.log(data);
 }
 
 export function addError(data) {
-    console.log(data);
     return {
         type: Types.ADD_ERROR,
         data: data,
     };
 }
+
 export function deleteCard(card) {
-    console.log(card);
     return {
         type: Types.DELETE_CARD,
         card: card,
@@ -52,9 +52,10 @@ export function deleteCard(card) {
 export const loadData = (url) => {
     return dispatch => {
         axios.get(url)
-            .then(response => {(dispatch(addData(response.data.results)));
-                dispatch(changeLoadState(true))
+            .then(response => {
+                (dispatch(addData(response.data.results)));
+                dispatch(changeLoadState(true));
             })
-        .catch(error => dispatch(addError(error)))
-    }
-}
+            .catch(error => dispatch(addError(error)));
+    };
+};
