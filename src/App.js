@@ -2,7 +2,7 @@ import './App.css';
 import {useSelector, useDispatch} from 'react-redux';
 import {loadData} from './redux/actions';
 import {useEffect} from 'react';
-import {Table} from './header/Table';
+import {Table} from './header/table';
 
 function App() {
     const data = useSelector((state) => state.data);
