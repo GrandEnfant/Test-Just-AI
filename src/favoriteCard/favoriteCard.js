@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import './style.css';
 import {addFavorites} from '../redux/actions';
-import trash from '../trash.png';
+import trash from './trash.png';
 import {deleteCard} from '../redux/actions';
 
 export const FavoritesCard = ({item, dispatch}) => {

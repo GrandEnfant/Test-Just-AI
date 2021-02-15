@@ -6,9 +6,9 @@ const rolledInitial = {
     secondGroup: false,
     thirdGroup: false
 };
-const initialFavorites = [];
+const favoritesInitial = [];
 
-export const AddDataReducer = (state = dataInitial, action) => {
+export const addDataReducer = (state = dataInitial, action) => {
     switch (action.type) {
     case Types.ADD_DATA: {
         const copiedState = state;
@@ -58,7 +58,7 @@ export const ChangeRolledUpReducer = (state = rolledInitial, action) => {
         return state;
     }
 };
-export const addFavoritesReducer = (state = initialFavorites, action) => {
+export const addFavoritesReducer = (state = favoritesInitial, action) => {
     switch (action.type) {
     case Types.ADD_FAVORITES: {
         let copiedState = state;

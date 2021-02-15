@@ -8,7 +8,6 @@ export const FavoritesList = ({dispatch}) => {
         dispatch: PropTypes.func,
     };
 
-
     const favorites = useSelector((state) => state.favorites);
     const handlerDragOver = (evt) => {
         evt.preventDefault();

@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 import {
-    AddDataReducer,
+    addDataReducer,
     AddErrorReducer,
     ChangeIsLoadedReducer,
     ChangeRolledUpReducer,
@@ -9,7 +9,7 @@ import {
 
 
 export const rootReducer = combineReducers({
-    data: AddDataReducer,
+    data: addDataReducer,
     error: AddErrorReducer,
     isLoad: ChangeIsLoadedReducer,
     isRolled: ChangeRolledUpReducer,
