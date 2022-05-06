@@ -1,13 +1,13 @@
 import './style.css';
 import {addFavorites} from '../redux/actions';
 import {DataType} from '../redux/types';
+import {useDispatch} from 'react-redux';
 interface Props {
     item: DataType,
-    dispatch: any,
     substring: string
 }
-const Card = ({item, dispatch, substring}: Props) => {
-
+const Card = ({item, substring}: Props) => {
+    const dispatch = useDispatch();
     const handlerDragEnd = (evt: any, card: DataType) => {
         evt.preventDefault();
         dispatch(addFavorites(card));
@@ -16,7 +16,6 @@ const Card = ({item, dispatch, substring}: Props) => {
         if (!filter) return str;
         const regexp = new RegExp(filter, 'ig');
         const matchValue = str.match(regexp);
-        console.log('filter', filter);
 
         if (matchValue) {
             return str.split(regexp).map((s, index, array) => {
