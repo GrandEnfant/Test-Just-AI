@@ -1,14 +1,14 @@
 import {Types} from '../types';
 
-const dataInitial = {data: ''};
+const dataInitial = [];
 const favoritesInitial = [];
 
 export const addDataReducer = (state = dataInitial, action) => {
     switch (action.type) {
     case Types.ADD_DATA: {
-        const copiedState = state;
-        copiedState.data = action.data;
-        return {...copiedState};
+        let copiedState = state;
+        copiedState = [...action.data];
+        return copiedState;
     }
     default:
         return state;
