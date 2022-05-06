@@ -1,25 +1,24 @@
 import './App.css';
-import {useSelector, useDispatch} from 'react-redux';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {ArrData} from './redux/types';
+import Table from './header';
 import {loadData} from './redux/actions';
-import {useEffect} from 'react';
-import {Table} from './header/table';
 
 function App() {
-    const data = useSelector((state) => state.data);
-    const isLoad = useSelector((state) => state.isLoad);
-    const isRolled = useSelector((state) => state.isRolled);
-    const URL = 'https://randomuser.me/api/?results=1000';
-    const dispatch = useDispatch();
-
+    const data = useSelector((state: { data: ArrData; }) => state.data);
+    const isLoad = useSelector((state: { isLoad: boolean; }) => state.isLoad);
+    const isRolled = useSelector((state: { isRolled: boolean; }) => state.isRolled);
+    const dispatch: any = useDispatch();
     useEffect(() => {
-        dispatch(loadData(URL));
+        dispatch(loadData(1));
     }, [URL]);
-
     return (
         <>
             {!isLoad ? <span> Loading...</span> :
-                <Table isRolled = {isRolled} dispatch={dispatch} data={data.data}/>
-            }
+                <>
+                    <Table isRolled={isRolled} data={data}/>
+                </>}
         </>
     );
 }

@@ -1,58 +1,47 @@
-import {rolledUpState} from '../redux/actions';
-import {Card} from '../card/card';
-import {useState, useEffect} from 'react';
-import PropTypes from 'prop-types';
+import { Waypoint } from 'react-waypoint';
+import {useCallback, useEffect, useState} from 'react';
 import './style.css';
+import {ArrData, DataType} from '../redux/types';
+import Card from '../card';
+import {useDispatch, useSelector} from 'react-redux';
+import {loadData} from '../redux/actions';
 
-export const Group = ({data, dispatch, isRolled, substring}) => {
-    Group.propTypes = {
-        data: PropTypes.array,
-        dispatch: PropTypes.func,
-        isRolled: PropTypes.object,
-        substring: PropTypes.string,
+interface Props {
+    data: ArrData,
+    isRolled: boolean,
+    substring: string,
+}
+
+const Group = ({data, substring}: Props) => {
+    useEffect(() => {
+        setGroup(data.data);
+    }, [data.data.length]);
+    const dispatch = useDispatch();
+    let [count, setCount] = useState(1);
+    const [group, setGroup] = useState(data.data);
+    const setNewFilteredValue = useCallback((substring: string) => {
+        setGroup(searchSubstring(data.data, substring));
+    }, [data]);
+    const searchSubstring = (group: Array<DataType>, substring: string) => {
+        return group.filter((item: DataType) => item.name.first.includes(substring));
     };
 
-    const first_group = data.filter(item => item.registered.age <= 10);
-    const second_group = data.filter(item => item.registered.age <= 20 && item.registered.age > 10);
-    const third_group = data.filter(item => item.registered.age <= 30 && item.registered.age > 20);
-    const [firstFilteredGroup, setFirstFilteredGroup] = useState(first_group);
-    const [secondFilteredGroup, setSecondFilteredGroup] = useState(second_group);
-    const [thirdFilteredGroup, setThirdFilteredGroup] = useState(third_group);
-
-    const setNewFilteredValue = (substring) => {
-        setFirstFilteredGroup(searchSubstring(first_group, substring));
-        setSecondFilteredGroup(searchSubstring(second_group, substring));
-        setThirdFilteredGroup(searchSubstring(third_group, substring));
+    const loadNewPage = () => {
+        setCount(++count);
+        dispatch(loadData(count));
     };
-    const searchSubstring = (group, substring) => {
-        return group.filter(item => item.name.first.includes(substring));
-    };
-
+    const isLoading = useSelector((state: { isLoad: boolean; }) => state.isLoad);
     useEffect(() => {
         setNewFilteredValue(substring);
     }, [substring]);
     return (
-
         <div className={'group'}>
-            <div className={'group-title'} onClick={() => dispatch(rolledUpState(isRolled.firstGroup, 'firstGroup'))}>
-                <span>1-10</span>
-                {!isRolled.firstGroup ? null :
-                    <> {firstFilteredGroup.map((item, id) => <Card substring={substring} dispatch={dispatch} key={id}
-                        item={item}/>)}</>
-                }
-            </div>
-            <div className={'group-title'} onClick={() => dispatch(rolledUpState(isRolled.secondGroup, 'secondGroup'))}>
-                <span>11-20</span>
-                {!isRolled.secondGroup ? null : <> {secondFilteredGroup.map((item, id) => <Card dispatch={dispatch}
-                    key={id} item={item}/>)}
-                </>}
-            </div>
-            <div className={'group-title'} onClick={() => dispatch(rolledUpState(isRolled.thirdGroup, 'thirdGroup'))}>
-                <span>21-30</span>
-                {!isRolled.thirdGroup ? null :
-                    <>{thirdFilteredGroup.map((item, id) => <Card dispatch={dispatch} key={id} item={item}/>)}
-                    </>}
-            </div>
+            {group.map( item => <Card substring={substring} dispatch={dispatch} key={item.id.value}
+                item={item}/>)}
+            {isLoading && <h2> Загружаю... </h2>}
+            <Waypoint onEnter={loadNewPage}/>
         </div>
     );
 };
+
+export default Group;

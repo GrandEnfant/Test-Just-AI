@@ -1,28 +1,31 @@
-import {FavoritesList} from '../favorites/favoritesList';
-import {useState} from 'react';
-import PropTypes from 'prop-types';
-import {Group} from '../group/group';
+import React, {useState} from 'react';
 import './style.css';
+import { ArrData } from '../redux/types';
+import FavouritesList from '../favorites';
+import Group from '../group';
 
-export const Table = ({data, isRolled, dispatch}) => {
+interface Props {
+    data: ArrData,
+    isRolled: boolean,
+}
 
-    Table.propTypes = {
-        data: PropTypes.object,
-        isRolled: PropTypes.object,
-        dispatch: PropTypes.func,
-    };
+const Table = ({data, isRolled}: Props) => {
+
     const [substring, setSubstring] = useState('');
-    const startSearchSubstring = (evt) => {
+    const startSearchSubstring = (evt: any) => {
         setSubstring(evt.target.value);
     };
+
 
     return (
         <div className={'table'}>
             <div className={'table-col1'}>
                 <input placeholder={'Поиск'} type={'text'} value={substring} onChange={startSearchSubstring}/>
-                <Group data={data} dispatch={dispatch} isRolled={isRolled} substring={substring}/>
+                <Group data={data} isRolled={isRolled} substring={substring}/>
             </div>
-            <FavoritesList dispatch={dispatch}/>
+            <FavouritesList/>
         </div>
     );
 };
+
+export default Table;

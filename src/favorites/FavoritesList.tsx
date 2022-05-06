@@ -1,24 +1,23 @@
 import './style.css';
-import {FavoritesCard} from '../favoriteCard/favoriteCard';
 import {useSelector} from 'react-redux';
-import PropTypes from 'prop-types';
+import React from 'react';
+import {DataType} from '../redux/types';
+import FavoritesCard from '../favoriteCard';
 
-export const FavoritesList = ({dispatch}) => {
-    FavoritesList.propTypes = {
-        dispatch: PropTypes.func,
-    };
-
-    const favorites = useSelector((state) => state.favorites);
-    const handlerDragOver = (evt) => {
+const FavouritesList = () => {
+    interface Favourites {
+     favourites: Array<DataType>,
+ }
+    const favourites = useSelector((state: Favourites) => state.favourites);
+    const handlerDragOver = (evt: any) => {
         evt.preventDefault();
         evt.target.style.background = '#ffffdc';
     };
-    const handlerDragLeave = (evt) => {
+    const handlerDragLeave = (evt: any) => {
         evt.preventDefault();
         evt.target.style.background = 'none';
-
     };
-    const handlerDrop = (evt) => {
+    const handlerDrop = (evt: any) => {
         evt.preventDefault();
         evt.target.style.background = 'none';
     };
@@ -29,12 +28,12 @@ export const FavoritesList = ({dispatch}) => {
             onDragLeave = {(evt) => handlerDragLeave(evt)}
             onDrop={(evt) => handlerDrop(evt)}
         > <span>Избранные</span>
-            {!favorites? null :
-                <div className={'favorites'}>
-                    {favorites.map((item, idx) => <FavoritesCard key={idx} dispatch={dispatch} item={item}/>)}
+            {favourites &&
+                <div className={'favourites'}>
+                    {favourites.map((item) => <FavoritesCard key={item.id.value} item={item}/>)}
                 </div>}
         </div>
     );
 };
 
-
+export default FavouritesList;
