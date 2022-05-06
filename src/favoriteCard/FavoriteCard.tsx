@@ -1,26 +1,27 @@
-import PropTypes from 'prop-types';
 import './style.css';
 import {addFavorites} from '../redux/actions';
 import trash from './trash.png';
 import {deleteCard} from '../redux/actions';
+import {DataType} from '../redux/types';
+import {useDispatch} from 'react-redux';
 
-export const FavoritesCard = ({item, dispatch}) => {
+interface Props {
+    item: DataType,
+}
 
-    FavoritesCard.propTypes = {
-        item: PropTypes.object,
-        dispatch: PropTypes.func
-    };
+const FavoritesCard = ({item}: Props) => {
+    const dispatch: any = useDispatch();
 
-    const handlerDragEnd = (evt, card) => {
+    const handlerDragEnd = (evt: any, card: DataType) => {
         evt.preventDefault();
         dispatch(addFavorites(card));
     };
 
-    const handleClickDelete = (evt, card) => {
+    const handleClickDelete = (evt: any, card: DataType) => {
         evt.preventDefault();
         dispatch(deleteCard(card));
     };
-
+    console.log(item, 'id');
     return (
         <div className={'userCard'}
             draggable={true}
@@ -36,3 +37,5 @@ export const FavoritesCard = ({item, dispatch}) => {
         </div>
     );
 };
+
+export default FavoritesCard;

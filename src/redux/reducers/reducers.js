@@ -1,11 +1,6 @@
 import {Types} from '../types';
 
 const dataInitial = {data: ''};
-const rolledInitial = {
-    firstGroup: false,
-    secondGroup: false,
-    thirdGroup: false
-};
 const favoritesInitial = [];
 
 export const addDataReducer = (state = dataInitial, action) => {
@@ -41,34 +36,17 @@ export const ChangeIsLoadedReducer = (state = false, action) => {
         return state;
     }
 };
-export const ChangeRolledUpReducer = (state = rolledInitial, action) => {
-    switch (action.type) {
-    case Types.ROLL_UP: {
-        let copiedState = state;
-        if (action.payload.number === 'firstGroup') {
-            copiedState.firstGroup = action.payload.isRolled;
-        } else if (action.payload.number === 'secondGroup') {
-            copiedState.secondGroup = action.payload.isRolled;
-        } else if (action.payload.number === 'thirdGroup') {
-            copiedState.thirdGroup = action.payload.isRolled;
-        }
-        return {...copiedState};
-    }
-    default:
-        return state;
-    }
-};
+
 export const addFavoritesReducer = (state = favoritesInitial, action) => {
+    debugger;
     switch (action.type) {
     case Types.ADD_FAVORITES: {
-        let copiedState = state;
-        let mySet = new Set(copiedState);
+        let mySet = new Set(state);
         mySet.add(action.card);
         return Array.from(mySet);
     }
     case Types.DELETE_CARD: {
-        let copiedState = state;
-        let mySet = new Set(copiedState);
+        let mySet = new Set(state);
         mySet.delete(action.card);
         return Array.from(mySet);
     }

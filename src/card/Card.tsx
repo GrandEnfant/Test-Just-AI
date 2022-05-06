@@ -1,26 +1,23 @@
-import PropTypes from 'prop-types';
 import './style.css';
 import {addFavorites} from '../redux/actions';
+import {DataType} from '../redux/types';
+interface Props {
+    item: DataType,
+    dispatch: any,
+    substring: string
+}
+const Card = ({item, dispatch, substring}: Props) => {
 
-export const Card = ({item, dispatch, substring}) => {
-    Card.propTypes = {
-        item: PropTypes.object,
-        dispatch: PropTypes.func,
-        substring: PropTypes.string
-    };
-
-    const handlerDragEnd = (evt, card) => {
+    const handlerDragEnd = (evt: any, card: DataType) => {
         evt.preventDefault();
         dispatch(addFavorites(card));
     };
-    function highlight(filter, str) {
+    function highlight(filter: string, str: string) {
         if (!filter) return str;
         const regexp = new RegExp(filter, 'ig');
         const matchValue = str.match(regexp);
         console.log('filter', filter);
 
-        console.log('str', str);
-        console.log('matchValue', matchValue);
         if (matchValue) {
             return str.split(regexp).map((s, index, array) => {
                 if (index < array.length - 1) {
@@ -45,3 +42,5 @@ export const Card = ({item, dispatch, substring}) => {
         </div>
     );
 };
+
+export default Card;
