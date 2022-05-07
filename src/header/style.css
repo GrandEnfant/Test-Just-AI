@@ -1,15 +1,17 @@
 .table {
     min-width: 1200px;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 50% 50%;
 }
 
-.table-col1 {
+.table-col {
     border: 1px solid gray;
-    width: 50%;
-    /*border-radius: 20%;*/
 }
 input[type=text] {
     border-radius: 10px;
     padding: 10px;
+}
+
+.header {
+    margin: 20px auto;
 }

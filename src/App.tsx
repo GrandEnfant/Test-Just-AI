@@ -1,9 +1,9 @@
-import './App.css';
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {DataType} from './redux/types';
-import Table from './header';
 import {loadData} from './redux/actions';
+import Table from './header';
+import './App.css';
 
 function App() {
     const data = useSelector((state: { data: Array<DataType>; }) => state.data);
