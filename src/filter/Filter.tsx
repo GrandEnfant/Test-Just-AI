@@ -1,5 +1,6 @@
 import React, {Dispatch, SetStateAction, useCallback} from 'react';
 import {DataType} from '../redux/types';
+import './style.css';
 
 interface Props {
     data: Array<DataType>,
@@ -20,8 +21,9 @@ const Filter = ({data, setSubstring, substring}: Props) => {
         });
     }, [substring]);
     return (
-        <input placeholder={'Поиск'} type={'text'} value={substring} onChange={startSearchSubstring}/>
-    );
+        <div className={'container'}>
+            <input className={'input'} placeholder={'Поиск'} type={'text'} value={substring} onChange={startSearchSubstring}/>
+        </div>);
 };
 
 export default Filter;

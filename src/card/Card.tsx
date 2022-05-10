@@ -1,7 +1,8 @@
-import './style.css';
 import {addFavorites} from '../redux/actions';
 import {DataType} from '../redux/types';
 import {useDispatch} from 'react-redux';
+import './style.css';
+
 interface Props {
     item: DataType,
     substring: string

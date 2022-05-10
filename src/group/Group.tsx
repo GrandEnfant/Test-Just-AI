@@ -1,10 +1,9 @@
 import { Waypoint } from 'react-waypoint';
 import React, { useEffect, useState } from 'react';
-import './style.css';
 import { DataType } from '../redux/types';
-import Card from '../card';
 import {useDispatch, useSelector} from 'react-redux';
 import {loadData} from '../redux/actions';
+import Card from '../card';
 import Filter from '../filter';
 
 interface Props {

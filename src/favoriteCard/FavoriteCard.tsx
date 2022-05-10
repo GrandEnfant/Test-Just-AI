@@ -1,9 +1,8 @@
-import './style.css';
-import {addFavorites} from '../redux/actions';
-import trash from './trash.png';
-import {deleteCard} from '../redux/actions';
-import {DataType} from '../redux/types';
 import {useDispatch} from 'react-redux';
+import {addFavorites, deleteCard} from '../redux/actions';
+import {DataType} from '../redux/types';
+import trash from './trash.png';
+import './style.css';
 
 interface Props {
     item: DataType,
@@ -21,7 +20,7 @@ const FavoritesCard = ({item}: Props) => {
         evt.preventDefault();
         dispatch(deleteCard(card));
     };
-    console.log(item, 'id');
+
     return (
         <div className={'userCard'}
             draggable={true}
