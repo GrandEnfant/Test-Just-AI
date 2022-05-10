@@ -1,19 +1,21 @@
-import {addFavorites} from '../redux/actions';
+import './style.css';
+import {addFavorites, deleteCard} from '../redux/actions';
 import {DataType} from '../redux/types';
 import {useDispatch} from 'react-redux';
-import './style.css';
+import trash from './trash.png';
 
 interface Props {
     item: DataType,
-    substring: string
+    substring?: string,
+    remove?: boolean,
 }
-const Card = ({item, substring}: Props) => {
+const Card = ({item, substring, remove = false}: Props) => {
     const dispatch = useDispatch();
     const handlerDragEnd = (evt: any, card: DataType) => {
         evt.preventDefault();
         dispatch(addFavorites(card));
     };
-    function highlight(filter: string, str: string) {
+    function highlight(filter: string | undefined, str: string) {
         if (!filter) return str;
         const regexp = new RegExp(filter, 'ig');
         const matchValue = str.match(regexp);
@@ -29,6 +31,10 @@ const Card = ({item, substring}: Props) => {
         }
         return str;
     }
+    const handleClickDelete = (evt: any, card: DataType) => {
+        evt.preventDefault();
+        dispatch(deleteCard(card));
+    };
 
     return (
         <div className={'userCard'}
@@ -39,6 +45,9 @@ const Card = ({item, substring}: Props) => {
                 <div className={'userName'}> {highlight(substring, item.name.first)}
                     {item.name.last} {item.registered.date}</div>
                 <div className={'userEmail'}> {item.email}</div></div>
+            {remove &&
+            <div onClick={(evt) => handleClickDelete(evt, item)} className={'trash'}><img alt={'trash'} className={'trash'} src={trash}/> </div>
+            }
         </div>
     );
 };
